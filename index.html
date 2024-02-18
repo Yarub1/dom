@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Manipulation Tool</title>
+    <title class="">DOM Manipulation Tool</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    
     <div id="app" class="container">
         <h1>DOM Manipulation Tool</h1>
         <p id="test">test</p>
@@ -78,6 +79,15 @@
         <div>
             <!-- Section 4: Displaying the console log -->
             <textarea id="console" rows="10" cols="50" readonly></textarea>
+        </div>
+        <div>
+            <!-- Section 5: Displaying mousemove and wheel results -->
+            <div id="mouseResults">
+                <h2>Mouse Move Results:</h2>
+                <textarea id="mouseMoveResults" rows="5" cols="50" readonly></textarea>
+                <h2>Mouse Wheel Results:</h2>
+                <textarea id="mouseWheelResults" rows="5" cols="50" readonly></textarea>
+            </div>
         </div>
     </div>
 
