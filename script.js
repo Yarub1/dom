@@ -1,4 +1,8 @@
 const ELEMENT_NOT_FOUND_MESSAGE = "Element not found.";
+let mouseMoveConsole = ""; // To store the results of the mousemove function
+let mouseWheelConsole = ""; // To store the results of the wheel function
+let selectedElement = null;
+let keylogger = ""; // Variable to store keylogger results
 
 // Function to safely access DOM elements by ID
 function getElementById(id) {
@@ -10,9 +14,13 @@ function getElementById(id) {
 }
 
 // Function to update console log and draw tree
-function updateConsoleLog(result) {
+function updateConsoleLog(resultType) {
   const consoleTextArea = getElementById("console");
-  consoleTextArea.value += `${JSON.stringify(result)}\n`;
+  if (resultType === "mousemove") {
+    consoleTextArea.value += mouseMoveConsole;
+  } else if (resultType === "wheel") {
+    consoleTextArea.value += mouseWheelConsole;
+  }
   updatePage();
 }
 
@@ -90,7 +98,6 @@ function createElement() {
   updatePage();
 }
 
-// Add functions related to mouse and keyboard events
 // Add keydown event listener
 document.addEventListener("keydown", function (event) {
   const consoleTextArea = getElementById("console");
@@ -112,6 +119,36 @@ document.addEventListener("keydown", function (event) {
     // Show a popup message
     showPopupMessage("Saved and sent");
   }
+
+  // Log key press to keylogger
+  keylogger += event.key;
+});
+
+// Add mousemove event listener
+document.addEventListener("mousemove", function (event) {
+  const mouseX = event.clientX;
+  const mouseY = event.clientY;
+
+  if (mouseX > 300 && mouseY > 200) {
+    document.body.style.backgroundColor = "lightblue";
+  } else {
+    // If the mouse is not at the specified point, reset the background color to default
+    document.body.style.backgroundColor = "";
+  }
+
+  mouseMoveConsole = `Mouse moved at (${mouseX}, ${mouseY})\n`; // Update the value
+  // Update the textarea in the UI
+  getElementById("mouseMoveResults").value = mouseMoveConsole;
+});
+
+// Add mousewheel event listener (for scrolling down)
+document.addEventListener("wheel", function (event) {
+  if (event.deltaY > 0) {
+    // When the mouse scrolls down
+    mouseWheelConsole = "Scrolled down!\n"; // Update the value
+    // Update the textarea in the UI
+    getElementById("mouseWheelResults").value = mouseWheelConsole;
+  }
 });
 
 // Function to show a popup message
@@ -130,35 +167,13 @@ function showPopupMessage(message) {
 
 // Initialize the tool
 function initializeTool() {
+  // Add event listeners and update page
   addEventListeners();
   updatePage();
 }
 
 // Call the initialize function when the document is ready
 document.addEventListener("DOMContentLoaded", initializeTool);
-
-// Add mousemove event listener
-document.addEventListener("mousemove", function (event) {
-  const mouseX = event.clientX;
-  const mouseY = event.clientY;
-
-  if (mouseX > 300 && mouseY > 200) {
-    document.body.style.backgroundColor = "lightblue";
-  } else {
-    // If the mouse is not at the specified point, reset the background color to default
-    document.body.style.backgroundColor = "";
-  }
-
-  getElementById("console").value += `Mouse moved at (${mouseX}, ${mouseY})\n`;
-});
-
-// Add mousewheel event listener (for scrolling down)
-document.addEventListener("wheel", function (event) {
-  if (event.deltaY > 0) {
-    // When the mouse scrolls down
-    showBottomMessage("Scrolled down!");
-  }
-});
 
 // Function to show a bottom message
 function showBottomMessage(message) {
@@ -186,4 +201,20 @@ function showLargeMessage(message) {
   setTimeout(function () {
     popup.remove();
   }, 5000); // Remove after 5 seconds
+}
+
+// Function to display a notification on mouse click
+document.addEventListener("click", function () {
+  showPopupMessage("Mouse click detected!");
+});
+
+// Display keylogger content in the console
+function showKeyloggerContent() {
+  getElementById("console").value += "Keylogger Content: " + keylogger + "\n";
+}
+
+// Function to clear the keylogger content
+function clearKeyloggerContent() {
+  keylogger = "";
+  getElementById("console").value += "Keylogger content cleared.\n";
 }
