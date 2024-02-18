@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app" class="container">
+        <h1>DOM Manipulation Tool</h1>
+        <p id="test">test</p>
+        <div id="result">
+            <!-- Tree will be drawn here -->
+        </div>
+        <div class="controls">
+            <!-- Existing controls -->
+
+            <!-- Section 1: Selecting elements by different criteria -->
+            <div>
+                <label for="elementIdInput">Enter Element ID:</label>
+                <input type="text" id="elementIdInput">
+                <button onclick="selectElementById()">Select Element by ID</button>
+            </div>
+            <div>
+                <label for="elementNameInput">Enter Element Name:</label>
+                <input type="text" id="elementNameInput">
+                <button onclick="selectElementsByName()">Select Elements by Name</button>
+            </div>
+            <div>
+                <label for="tagNameInput">Enter Tag Name:</label>
+                <input type="text" id="tagNameInput">
+                <button onclick="selectElementsByTagName()">Select Elements by Tag Name</button>
+            </div>
+            <div>
+                <label for="classNameInput">Enter Class Name:</label>
+                <input type="text" id="classNameInput">
+                <button onclick="selectElementsByClassName()">Select Elements by Class Name</button>
+            </div>
+            <div>
+                <label for="cssSelectorInput">Enter CSS Selector:</label>
+                <input type="text" id="cssSelectorInput">
+                <button onclick="selectByCssSelector()">Select by CSS Selector</button>
+            </div>
+
+            <!-- Section 2: Traversing elements -->
+            <div>
+                <label for="parentElementInput">Enter Parent Element ID:</label>
+                <input type="text" id="parentElementInput">
+                <button onclick="getParentElement()">Get Parent Element</button>
+            </div>
+            <div>
+                <label for="childElementInput">Enter Parent Element ID:</label>
+                <input type="text" id="childElementInput">
+                <button onclick="getChildElements()">Get Child Elements</button>
+            </div>
+            <div>
+                <label for="siblingElementInput">Enter Sibling Element ID:</label>
+                <input type="text" id="siblingElementInput">
+                <button onclick="getSiblings()">Get Siblings</button>
+            </div>
+
+            <!-- Section 3: Manipulating elements -->
+            <div>
+                <label for="styleInput">Enter Style:</label>
+                <input type="text" id="styleInput">
+                <button onclick="changeElementStyle()">Change Element Style</button>
+            </div>
+            <div>
+                <label for="elementTypeInput">Enter Element Type:</label>
+                <input type="text" id="elementTypeInput">
+                <button onclick="createElement()">Create Element</button>
+            </div>
+            <div>
+                <button onclick="removeElement()">Remove Selected Element</button>
+            </div>
+        </div>
+        <div>
+            <!-- Section 4: Displaying the console log -->
+            <textarea id="console" rows="10" cols="50" readonly></textarea>
+        </div>
+    </div>
+
+    <!-- Include the main script file -->
+    <script src="script.js"></script>
+</body>
+</html>
