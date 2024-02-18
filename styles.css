@@ -1,6 +1,7 @@
 *{
     margin: 0;
-    padding: 0;
+    padding: 100;
+    
 }
 body {
     margin: 0;
@@ -14,7 +15,6 @@ body {
 }
 
 .container {
-    top: 15px;
     text-align: center;
     background-color: white;
     padding: 20px;
