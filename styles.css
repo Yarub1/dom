@@ -51,6 +51,8 @@ button:hover {
 }
 
 #test{
+    margin: 15px;
+    padding: 25px;
     font-size: 50px;
     color: #3c763d;
     margin-top: 20px;
